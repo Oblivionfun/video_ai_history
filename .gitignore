@@ -1,0 +1,19 @@
+# secrets
+.env
+
+# environments
+/.venv/
+/video/node_modules/
+__pycache__/
+*.pyc
+
+# large or regenerable assets (see docs/01-pipeline.md · 资源清单 for how to rebuild them)
+/video/public/tiles/
+/data/
+/out/
+*.npy
+*.zip
+
+# OS / editors
+.DS_Store
+/video/.remotion/

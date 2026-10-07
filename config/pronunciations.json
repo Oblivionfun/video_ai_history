@@ -1,0 +1,22 @@
+{
+  "_doc": "One pronunciation table for every TTS provider. pinyin uses tone numbers (5 = neutral). edge: same-length homophone used only by edge-tts, which cannot take phoneme markup; it must keep the exact length so character timings stay aligned with the on-screen text.",
+  "entries": [
+    {"word": "莫贺延碛", "pinyin": "mo4 he4 yan2 qi4", "edge": "莫贺延砌"},
+    {"word": "麴文泰", "pinyin": "qu1 wen2 tai4", "edge": "曲文泰"},
+    {"word": "可汗", "pinyin": "ke4 han2", "edge": "克寒"},
+    {"word": "石槃陀", "pinyin": "shi2 pan2 tuo2", "edge": "石盘陀"},
+    {"word": "大乘天", "pinyin": "da4 sheng4 tian1", "edge": "大胜天"},
+    {"word": "大乘", "pinyin": "da4 sheng4", "edge": "大胜"},
+    {"word": "曲女城", "pinyin": "qu1 nv3 cheng2", "edge": "屈女城"},
+    {"word": "老鼋", "pinyin": "lao3 yuan2", "edge": "老元"},
+    {"word": "梵衍那", "pinyin": "fan4 yan3 na4"},
+    {"word": "那烂陀", "pinyin": "na4 lan4 tuo2"},
+    {"word": "突伽", "pinyin": "tu1 qie2", "edge": "突茄"},
+    {"word": "戒日王", "pinyin": "jie4 ri4 wang2"},
+    {"word": "朅盘陀", "pinyin": "qie4 pan2 tuo2", "edge": "怯盘陀"},
+    {"word": "于阗", "pinyin": "yu2 tian2"},
+    {"word": "龟兹", "pinyin": "qiu1 ci2", "edge": "秋慈"},
+    {"word": "吐鲁番", "pinyin": "tu3 lu3 fan1"},
+    {"word": "吐蕃", "pinyin": "tu3 bo1", "edge": "土波"}
+  ]
+}

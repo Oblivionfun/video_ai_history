@@ -1,0 +1,101 @@
+{
+  "id": "s1-toudu",
+  "episode": "ep01",
+  "title": "唐僧其实是偷渡出国的？",
+  "formats": ["portrait"],
+  "voice": {"provider": "edge", "voice": "zh-CN-YunjianNeural", "rate": "-2%"},
+  "gap": 0.32,
+  "sub_max_portrait": 14,
+  "chapters": [
+    {"id": "hook", "lead": 0.25, "tail": 0.25, "lines": [
+      {"id": "h1", "text": "《西游记》里，唐僧是唐太宗的结拜御弟，风风光光地出了长安。"},
+      {"id": "h2", "text": "可历史上的玄奘，其实是偷渡出境的。"}
+    ]},
+    {"id": "body", "lead": 0.2, "tail": 0.3, "lines": [
+      {"id": "b1", "text": "贞观初年，唐朝禁止百姓私自出境。玄奘上表请求西行，朝廷“有诏不许”。"},
+      {"id": "b2", "text": "他没有回头，昼伏夜行，一路走到了边境的瓜州。"},
+      {"id": "b3", "text": "追捕他的公文随后就到，州吏李昌却当着他的面，把公文撕了。"},
+      {"id": "b4", "text": "一个名叫石槃陀的胡人，趁夜带他渡过葫芦河，绕开了玉门关。"},
+      {"id": "b5", "text": "有学者认为，这位胡人弟子，正是孙悟空的原型之一。"},
+      {"id": "b6", "text": "后来，高昌国王为他写下二十四封国书，西突厥可汗又派人一路护送。"},
+      {"id": "b7", "text": "这些国书，到了小说里，就变成了盖满各国宝印的通关文牒。"}
+    ]},
+    {"id": "end", "lead": 0.3, "tail": 4.2, "lines": [
+      {"id": "e1", "text": "从偷渡出境，到通关文牒——历史和小说，在这里拐了一个弯。"}
+    ]}
+  ],
+  "hook": {"kicker": "玄奘西行 · 历史 × 西游记", "lines": ["唐僧其实是", "偷渡出国的？"]},
+  "camera": [
+    {"at": "start", "ll": [108.94, 34.27], "zoom": 6.9, "pitch": 52, "bearing": -14},
+    {"at": "h2", "ll": [108.6, 34.5], "zoom": 6.3, "pitch": 50, "bearing": -8},
+    {"at": "b1:玄奘上表", "ll": [108.5, 34.6], "zoom": 6.1, "pitch": 48, "bearing": -4},
+    {"at": "b2", "ll": [107.8, 35.0], "zoom": 5.8, "pitch": 48, "bearing": -18},
+    {"at": "b2:一路走到", "ll": [101.8, 37.6], "zoom": 5.35, "pitch": 46, "bearing": -30},
+    {"at": "b2:end", "ll": [96.5, 40.2], "zoom": 6.6, "pitch": 54, "bearing": -32},
+    {"at": "b3:end", "ll": [96.35, 40.3], "zoom": 6.9, "pitch": 56, "bearing": -28},
+    {"at": "b4:绕开", "ll": [96.1, 40.5], "zoom": 7.4, "pitch": 60, "bearing": -20},
+    {"at": "b5:end", "ll": [96.0, 40.6], "zoom": 7.5, "pitch": 61, "bearing": -16},
+    {"at": "b6:二十四封", "ll": [90.5, 42.2], "zoom": 5.5, "pitch": 46, "bearing": -30},
+    {"at": "b6:end", "ll": [77.0, 42.3], "zoom": 5.6, "pitch": 48, "bearing": -26},
+    {"at": "b7:end", "ll": [77.5, 42.1], "zoom": 5.7, "pitch": 48, "bearing": -22},
+    {"at": "e1:到通关文牒", "ll": [86.0, 32.5], "zoom": 4.45, "pitch": 26, "bearing": 0},
+    {"at": "end", "ll": [86.5, 32.0], "zoom": 4.35, "pitch": 24, "bearing": 0}
+  ],
+  "route": [
+    {"at": "start", "node": "changan"},
+    {"at": "b2", "node": "changan"},
+    {"at": "b2:瓜州+0.5", "node": "guazhou"},
+    {"at": "b4:葫芦河", "node": "guazhou"},
+    {"at": "b4:玉门关+0.6", "node": "yumen"},
+    {"at": "b6", "node": "yumen"},
+    {"at": "b6:二十四封", "node": "gaochang"},
+    {"at": "b6:end", "node": "suye"},
+    {"at": "e1", "node": "suye"},
+    {"at": "e1:end", "node": "END"}
+  ],
+  "overlays": [
+    {"type": "city", "node": "changan", "from": "h2-0.2", "to": "b2:一路走到"},
+    {"type": "label", "anchor": "a:hexi", "text": "河西走廊", "style": "area", "from": "b2:昼伏夜行", "to": "b2:end"},
+    {"type": "walker", "from": "b2", "to": "b2:瓜州+0.8"},
+    {"type": "city", "node": "guazhou", "from": "b2:瓜州-0.3", "to": "b4:end"},
+    {"type": "walker", "from": "b4:葫芦河-0.2", "to": "b4:玉门关+0.9"},
+    {"type": "city", "node": "yumen", "from": "b4:玉门关-0.3", "to": "b5"},
+    {"type": "walker", "from": "b6", "to": "b6:end+0.2"},
+    {"type": "city", "node": "gaochang", "from": "b6:高昌国王-0.2", "to": "b6:end"},
+    {"type": "city", "node": "suye", "from": "b6:西突厥可汗-0.2", "to": "b7"},
+    {"type": "pin", "pin": "p_changan", "side": "l", "from": "e1", "to": "end-3.6"},
+    {"type": "pin", "pin": "p_suye", "side": "r", "from": "e1+0.6", "to": "end-3.6"},
+    {"type": "walker", "from": "e1", "to": "e1:end"}
+  ],
+  "cards": [
+    {"type": "image", "src": "xy_sendoff", "kind": "novel", "tag": "西游记 · 小说", "title": "唐王送别", "sub": "太宗与唐僧结拜，称他“御弟”", "from": "h1+0.3", "to": "h1:end+0.15"},
+    {"type": "quote", "lines": ["有诏不许"], "source": "《大唐大慈恩寺三藏法师传》", "from": "b1:玄奘上表-0.2", "to": "b1:end+0.25"},
+    {"type": "facts", "tag": "瓜州", "title": "李昌毁牒", "items": ["凉州发来的追捕公文", "被州吏当面撕毁"], "from": "b3+0.1", "to": "b3:end+0.2"},
+    {"type": "image", "src": "xy_wukong", "kind": "novel", "tag": "西游记 · 原型之说", "title": "孙悟空", "sub": "原型之一 · 胡人弟子石槃陀", "fx": 0.38, "from": "b5-0.1", "to": "b5:end+0.2"},
+    {"type": "scroll", "seals": "b7:到了小说里", "from": "b7-0.2", "to": "b7:end+0.35"}
+  ],
+  "fx": {"night": [["b2:昼伏夜行-0.2", "b2:end+0.3"], ["b4-0.2", "b4:end+0.3"]]},
+  "end": {"from": "e1:end+0.35", "full": "完整版 · 看主页"},
+  "cover": {"at": "e1:end", "lines": ["唐僧其实是", "偷渡出国的？"]},
+  "audio": {
+    "sections": [
+      {"from": "start", "mood": "tension"},
+      {"from": "b2", "mood": "journey"},
+      {"from": "b5", "mood": "warm"},
+      {"from": "b7", "mood": "sacred"},
+      {"from": "e1", "mood": "release"},
+      {"from": "end-3.9", "mood": "outro"}
+    ],
+    "cues": [
+      {"at": "start", "kind": "boom"},
+      {"at": "h2:偷渡", "kind": "hit"},
+      {"at": "b1:有诏不许", "kind": "bell"},
+      {"at": "b2", "kind": "whoosh"},
+      {"at": "b3:撕了", "kind": "tear"},
+      {"at": "b5:孙悟空", "kind": "gliss"},
+      {"at": "b6", "kind": "whoosh"},
+      {"at": "b7:到了小说里", "kind": "seals"},
+      {"at": "end-3.6", "kind": "hit"}
+    ]
+  }
+}

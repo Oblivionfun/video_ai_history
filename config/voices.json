@@ -1,0 +1,28 @@
+{
+  "_doc": "Per-provider narrator settings. Keys/secrets never go here; they come from .env (see .env.example). A cut picks its provider in its script/cut JSON (voice.provider) and can be overridden on the command line: scripts/tts.py --provider doubao.",
+  "edge": {"voice": "zh-CN-YunjianNeural", "rate": "-6%"},
+  "azure": {
+    "voice": "zh-CN-YunjianNeural",
+    "style": "documentary-narration",
+    "styledegree": 1.0,
+    "rate": "-6%"
+  },
+  "doubao": {
+    "resource_id": "seed-tts-2.0",
+    "speaker": "zh_male_cixingjieshuonan_uranus_bigtts",
+    "context": "请用沉稳、克制、略带感情的纪录片旁白语气来讲，语速稍慢，句尾不要上扬。",
+    "speech_rate": -8
+  },
+  "doubao_clone": {
+    "resource_id": "seed-icl-2.0",
+    "speaker": "",
+    "model": "",
+    "speech_rate": -6
+  },
+  "minimax": {
+    "model": "speech-2.8-hd",
+    "voice_id": "",
+    "speed": 0.94,
+    "endpoint": "https://api.minimaxi.com/v1/t2a_v2"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "_doc": "Channel-wide text used by end cards and covers. name: the account name once registered (leave empty to show the slogan only). The next-episode teaser lives in each episode's episode.json (\"next\").",
+  "name": "小山河司马",
+  "slogan": "跟着地图读历史",
+  "cadence": "每日更新"
+}

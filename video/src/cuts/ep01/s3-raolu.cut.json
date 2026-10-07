@@ -1,0 +1,123 @@
+{
+  "id": "s3-raolu",
+  "episode": "ep01",
+  "title": "明明有近路，玄奘为什么绕远路？",
+  "formats": ["portrait", "landscape"],
+  "voice": {"provider": "edge", "voice": "zh-CN-YunjianNeural", "rate": "-2%"},
+  "gap": 0.34,
+  "sub_max": 20,
+  "sub_max_portrait": 14,
+  "chapters": [
+    {"id": "hook", "lead": 0.25, "tail": 0.25, "lines": [
+      {"id": "h1", "text": "从长安到印度，地图上最直的一条线，要翻越青藏高原和喜马拉雅。"},
+      {"id": "h2", "text": "可玄奘偏偏往西北绕了一个大圈，多走了好几千里。为什么？"}
+    ]},
+    {"id": "body", "lead": 0.25, "tail": 0.3, "lines": [
+      {"id": "b1", "text": "第一，高原雪山几乎无路可走。当时最成熟的，是沿着天山南北的绿洲，一路向西的丝绸之路。"},
+      {"id": "b2", "text": "绿洲之间有水，有城，有补给；沙漠再险，也比无人区强。"},
+      {"id": "b3", "text": "第二，他要先去见一个人——西突厥的可汗。"},
+      {"id": "b4", "text": "那时，从天山到兴都库什山的大片土地，都在西突厥的势力范围之内。"},
+      {"id": "b5", "text": "所以他向北翻越凌山，到碎叶城拿到可汗的国书和护卫，再折向南方，穿过撒马尔罕，才进入印度。"},
+      {"id": "b6", "text": "回程，他换了一条路，走塔克拉玛干沙漠的南缘。"},
+      {"id": "b7", "text": "他曾答应高昌王，回来时要在高昌讲经三年；可等他回来，高昌国已经不在了。"}
+    ]},
+    {"id": "end", "lead": 0.3, "tail": 4.2, "lines": [
+      {"id": "e1", "text": "这条路，绕开了雪山，却绕不开人情。"}
+    ]}
+  ],
+  "hook": {"kicker": "玄奘西行 · 地图里的为什么", "lines": ["明明有近路", "为何绕远路？"]},
+  "camera": [
+    {"at": "start", "ll": [96.0, 30.5], "zoom": 4.35, "pitch": 28, "bearing": 0, "pz": 3.75},
+    {"at": "h1:end", "ll": [93.5, 31.5], "zoom": 4.25, "pitch": 26, "bearing": 0, "pz": 3.65},
+    {"at": "h2:end", "ll": [88.0, 33.5], "zoom": 4.15, "pitch": 24, "bearing": 0, "pz": 3.55},
+    {"at": "b1:天山", "ll": [86.0, 41.0], "zoom": 5.3, "pitch": 46, "bearing": -12},
+    {"at": "b1:end", "ll": [83.5, 41.2], "zoom": 5.5, "pitch": 48, "bearing": -18},
+    {"at": "b2:end", "ll": [82.5, 41.3], "zoom": 5.6, "pitch": 48, "bearing": -20},
+    {"at": "b3:西突厥", "ll": [76.0, 42.4], "zoom": 5.9, "pitch": 50, "bearing": -14},
+    {"at": "b4:天山", "ll": [74.0, 40.0], "zoom": 4.9, "pitch": 40, "bearing": -6},
+    {"at": "b4:end", "ll": [71.0, 38.5], "zoom": 4.8, "pitch": 38, "bearing": 0},
+    {"at": "b5:翻越凌山", "ll": [78.4, 41.6], "zoom": 6.2, "pitch": 54, "bearing": -10},
+    {"at": "b5:碎叶城", "ll": [75.6, 42.6], "zoom": 6.0, "pitch": 52, "bearing": -6},
+    {"at": "b5:撒马尔罕", "ll": [68.5, 39.8], "zoom": 5.6, "pitch": 48, "bearing": 6},
+    {"at": "b5:end", "ll": [71.5, 34.0], "zoom": 5.1, "pitch": 42, "bearing": 10},
+    {"at": "b6", "ll": [76.5, 37.6], "zoom": 5.4, "pitch": 46, "bearing": 24, "cut": true},
+    {"at": "b6:end+1", "ll": [84.0, 38.2], "zoom": 5.1, "pitch": 42, "bearing": 30},
+    {"at": "b7:end", "ll": [85.0, 38.6], "zoom": 5.0, "pitch": 40, "bearing": 22},
+    {"at": "e1", "ll": [86.5, 33.0], "zoom": 4.25, "pitch": 26, "bearing": 0, "pz": 3.65},
+    {"at": "end", "ll": [86.5, 32.5], "zoom": 4.2, "pitch": 24, "bearing": 0, "pz": 3.6}
+  ],
+  "route": [
+    {"at": "start", "node": "changan"},
+    {"at": "h2", "node": "changan"},
+    {"at": "h2:end", "node": "nalanda"},
+    {"at": "b1", "node": "nalanda"},
+    {"at": "b1+1.2", "node": "gaochang"},
+    {"at": "b5", "node": "gaochang"},
+    {"at": "b5:翻越凌山+0.8", "node": "lingshan"},
+    {"at": "b5:碎叶城+0.8", "node": "suye"},
+    {"at": "b5:撒马尔罕+0.8", "node": "samarkand"},
+    {"at": "b5:end", "node": "gandhara"},
+    {"at": "b6-0.01", "node": "gandhara"},
+    {"at": "b6", "node": "indus"},
+    {"at": "b6:南缘+0.6", "node": "khotan"},
+    {"at": "b6:end+1.2", "node": "dunhuang"},
+    {"at": "e1", "node": "dunhuang"},
+    {"at": "e1:end", "node": "END"}
+  ],
+  "overlays": [
+    {"type": "city", "node": "changan", "side": "l", "from": "start+0.2", "to": "h2:end"},
+    {"type": "city", "node": "nalanda", "from": "start+0.6", "to": "h2:end"},
+    {"type": "line", "a": "n:changan", "b": "n:nalanda", "label": "最直的一条线", "from": "h1:最直-0.2", "to": "h2:end"},
+    {"type": "label", "anchor": "a:tibet", "text": "青藏高原", "style": "area", "from": "h1:青藏高原-0.2", "to": "h2"},
+    {"type": "label", "anchor": "a:himalaya", "text": "喜马拉雅山", "style": "area", "from": "h1:喜马拉雅-0.2", "to": "h2"},
+    {"type": "walker", "from": "h2", "to": "h2:end+0.2"},
+    {"type": "label", "anchor": "a:tianshan", "text": "天 山", "style": "area", "from": "b1:天山-0.2", "to": "b2:end"},
+    {"type": "label", "anchor": "a:taklamakan", "text": "塔克拉玛干沙漠", "style": "area", "from": "b1:绿洲-0.2", "to": "b2:end"},
+    {"type": "city", "node": "gaochang", "from": "b1:绿洲", "to": "b2:end"},
+    {"type": "city", "node": "quzhi", "from": "b1:绿洲+0.3", "to": "b2:end"},
+    {"type": "city", "node": "suye", "from": "b3:西突厥-0.3", "to": "b4"},
+    {"type": "label", "anchor": "a:tianshan", "text": "天 山", "style": "area", "from": "b4:天山-0.2", "to": "b4:end"},
+    {"type": "label", "anchor": "a:hindukush", "text": "兴都库什山", "style": "area", "from": "b4:兴都库什山-0.2", "to": "b4:end"},
+    {"type": "walker", "from": "b5", "to": "b5:end+0.2"},
+    {"type": "city", "node": "lingshan", "from": "b5:翻越凌山", "to": "b5:碎叶城+1"},
+    {"type": "city", "node": "suye", "from": "b5:碎叶城-0.2", "to": "b5:撒马尔罕+1"},
+    {"type": "city", "node": "samarkand", "from": "b5:撒马尔罕-0.2", "to": "b5:end"},
+    {"type": "walker", "from": "b6", "to": "b6:end+1.2"},
+    {"type": "label", "anchor": "a:taklamakan", "text": "塔克拉玛干沙漠", "style": "area", "from": "b6", "to": "b6:end+1"},
+    {"type": "city", "node": "khotan", "from": "b6:南缘", "to": "b6:end+1.2"},
+    {"type": "pin", "pin": "p_gaochang", "from": "e1", "to": "end-3.6"},
+    {"type": "walker", "from": "e1+0.4", "to": "e1:end"}
+  ],
+  "cards": [
+    {"type": "facts", "tag": "第一", "title": "绿洲之路", "items": ["有水", "有城", "有补给"], "from": "b2-0.1", "to": "b2:end+0.25"},
+    {"type": "facts", "tag": "第二", "title": "西突厥可汗", "items": ["控制天山以西诸国", "一纸国书，一路放行"], "from": "b3:西突厥+0.3", "to": "b3:end+0.25"},
+    {"type": "image", "src": "hs_gaochang", "kind": "history", "tag": "高昌", "title": "高昌王麴文泰", "sub": "曾约定：回程讲经三年", "loss": {"at": "b7:高昌国已经-0.3", "text": "公元 640 年 · 高昌国被唐所灭"}, "from": "b7-0.1", "to": "b7:end+0.3"}
+  ],
+  "fx": {"snow": [["b5:翻越凌山-0.3", "b5:碎叶城"]], "sand": [["b6", "b6:end+1"]]},
+  "end": {"from": "e1:end+0.35", "full": "完整版 · 看主页"},
+  "cover": {"at": "h2:end-0.8", "lines": ["明明有近路", "为何绕远路？"]},
+  "audio": {
+    "sections": [
+      {"from": "start", "mood": "mystery"},
+      {"from": "h2", "mood": "tension"},
+      {"from": "b1", "mood": "journey"},
+      {"from": "b3", "mood": "regal"},
+      {"from": "b5", "mood": "journey_fast"},
+      {"from": "b6", "mood": "cold_journey"},
+      {"from": "b7", "mood": "melancholy"},
+      {"from": "e1", "mood": "bittersweet"},
+      {"from": "end-3.9", "mood": "outro"}
+    ],
+    "cues": [
+      {"at": "start", "kind": "boom"},
+      {"at": "h1:最直", "kind": "whoosh"},
+      {"at": "h2:为什么", "kind": "hit"},
+      {"at": "b1", "kind": "whoosh"},
+      {"at": "b3", "kind": "hit"},
+      {"at": "b5:翻越凌山", "kind": "wind"},
+      {"at": "b6", "kind": "whoosh"},
+      {"at": "b7:高昌国已经", "kind": "toll"},
+      {"at": "end-3.6", "kind": "hit"}
+    ]
+  }
+}

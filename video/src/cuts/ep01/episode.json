@@ -1,0 +1,82 @@
+{
+  "_doc": "What `python scripts/studio.py package ep01` produces. comp = Remotion composition id; audio = data/audio/<episode>/<audio>/; subs = 'subs' (16:9 chunks) or 'subsP' (9:16 chunks) from the timeline; covers = {aspect: composition id}.",
+  "id": "ep01",
+  "title": "玄奘西行 629—645",
+  "identity": {
+    "_doc": "Series identity drawn by every cut of this episode: end card (film + seal + tagline) and covers (cover_tag).",
+    "film": "玄奘西行",
+    "seal": "西游",
+    "tagline": "一张地图 重走真实取经路",
+    "cover_tag": "玄奘西行 · 一张地图看历史"
+  },
+  "next": {
+    "_doc": "Teaser on this episode's end cards. img = video/public/img(2x)/<img>.jpg",
+    "kicker": "下期预告",
+    "title": "李白一生，到底走了多远？",
+    "sub": "漫游大半个中国 · 一张地图看完诗仙足迹",
+    "img": "next_libai"
+  },
+  "deliverables": [
+    {
+      "key": "main",
+      "comp": "XuanzangFilm",
+      "audio": "main",
+      "timeline": "main.timeline.json",
+      "subs": "subs",
+      "folder": "01_横版长片 · B站 YouTube 西瓜 抖音横屏",
+      "name": "玄奘西行_629-645_横版长片",
+      "covers": {"16x9": "Cover", "3x4": "Cover34"},
+      "music_only": true
+    },
+    {
+      "key": "s1",
+      "comp": "ep01-s1-toudu-v",
+      "audio": "s1-toudu",
+      "timeline": "s1-toudu.timeline.json",
+      "subs": "subsP",
+      "folder": "02_竖版短片 · 唐僧其实是偷渡出国的",
+      "name": "唐僧其实是偷渡出国的_竖版",
+      "covers": {"9x16": "ep01-s1-toudu-cover-v", "3x4": "ep01-s1-toudu-cover-34"}
+    },
+    {
+      "key": "s2",
+      "comp": "ep01-s2-huoyan-v",
+      "audio": "s2-huoyan",
+      "timeline": "s2-huoyan.timeline.json",
+      "subs": "subsP",
+      "folder": "03_竖版短片 · 火焰山真的存在吗",
+      "name": "火焰山真的存在吗_竖版",
+      "covers": {"9x16": "ep01-s2-huoyan-cover-v", "3x4": "ep01-s2-huoyan-cover-34"}
+    },
+    {
+      "key": "s3v",
+      "comp": "ep01-s3-raolu-v",
+      "audio": "s3-raolu",
+      "timeline": "s3-raolu.timeline.json",
+      "subs": "subsP",
+      "folder": "04_竖版短片 · 明明有近路为何绕远路",
+      "name": "明明有近路为何绕远路_竖版",
+      "covers": {"9x16": "ep01-s3-raolu-cover-v", "3x4": "ep01-s3-raolu-cover-34"}
+    },
+    {
+      "key": "s3h",
+      "comp": "ep01-s3-raolu-h",
+      "audio": "s3-raolu",
+      "timeline": "s3-raolu.timeline.json",
+      "subs": "subs",
+      "folder": "05_横版短片 · 明明有近路为何绕远路（B站）",
+      "name": "明明有近路为何绕远路_横版",
+      "covers": {"16x9": "ep01-s3-raolu-cover-h"}
+    },
+    {
+      "key": "m1",
+      "comp": "ep01-m1-quancheng-v",
+      "audio": "m1-quancheng",
+      "timeline": "m1-quancheng.timeline.json",
+      "subs": "subsP",
+      "folder": "06_竖版中长片 · 一张地图走完玄奘西行",
+      "name": "一张地图走完玄奘西行_竖版",
+      "covers": {"9x16": "ep01-m1-quancheng-cover-v", "3x4": "ep01-m1-quancheng-cover-34"}
+    }
+  ]
+}

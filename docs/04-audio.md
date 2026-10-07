@@ -9,13 +9,20 @@
 
 | provider | 用途 | 需要 | 逐字时间 | 发音控制 |
 |---|---|---|---|---|
-| `edge` | 当前默认，免费 | 无 | WordBoundary | 等长同音字替换（`pronunciations.json` 的 `edge` 字段） |
-| `doubao` | **推荐的正式旁白**（中文榜第一） | `VOLC_API_KEY` + `voices.json` 里的 2.0 音色 id | `enable_subtitle` 字级 | `原词/(pin1)(yin1)` 词典，自动生成 |
+| `doubao` | **默认旁白**（已实测） | `VOLC_API_KEY` + `voices.json` 里的 2.0 音色 id（现用 `zh_male_cixingjieshuonan_uranus_bigtts` 磁性解说男） | `enable_subtitle` 字级，单位秒 | `原词/(pin1)(yin1)` 词典，自动生成 |
+| `edge` | 免费备用 | 无 | WordBoundary | 等长同音字替换（`pronunciations.json` 的 `edge` 字段） |
 | `doubao_clone` | 用你自己的声音 | 控制台完成声音复刻，填 `speaker` / `model` | 同上 | 同上 |
 | `azure` | 官方渠道的云健 + 纪录片风格 | `AZURE_SPEECH_KEY`、`pip install azure-cognitiveservices-speech` | WordBoundary | SAPI 拼音 `<phoneme>` |
 | `minimax` | 备选（读字准确） | `MINIMAX_API_KEY` + `voice_id` | 字幕文件 | `原词/(pin1)` 词典 |
 
-`doubao`、`azure`、`minimax` 的代码按官方文档写好，但在拿到 key 之前没有实测过。第一次接入时先合成一句（`--only h1`），检查音频和 `meta.json` 里的 `ct`。
+`azure`、`minimax`、`doubao_clone` 的代码按官方文档写好，但没有实测过。第一次接入时先合成一句（`--only h1`），检查音频和 `meta.json` 里的 `ct`。
+
+### 停顿压缩（`max_pause`）
+
+豆包在逗号、破折号和“所以”这类词后会停 0.6–1.1 秒，整片会比 edge 慢 25–40%。`tts.py` 的 `tighten` 把句内停顿压到上限：标点处 `max_pause` 秒，字与字之间 0.6 × `max_pause`。只删比本句峰值低 24 dB 以上的部分（静音、换气、尾音），拼接处 6 毫秒交叉淡化，逐字时间同步前移。实测压缩前后高于该门限的人声帧数完全一致。
+
+- 设置位置：`config/voices.json` 的 `doubao.max_pause`（长片 0.38），cut JSON 的 `voice.max_pause` 可覆盖（短片 0.30、竖版中长片 0.34）。
+- 原始返回缓存在 `data/tts/<ep>/<cut>/raw/`：改 `max_pause` 只重做后处理，不重新请求、不重复计费；改 `speech_rate`、`context` 或文本才会重新合成。
 
 ### 发音词典
 
@@ -31,7 +38,7 @@
 
 ### 语速
 
-纪录片长片 `-6%`；竖版短片 `-2%`～`-3%`（短视频节奏更快）。
+豆包：长片 `speech_rate` 0、竖版中长片 3、竖版短片 6（配合停顿压缩，时长与 edge 版相差 ±8%）。edge：长片 `-6%`，短片 `-2%`～`-3%`。
 
 ## 配乐与音效（`scripts/score.py`）
 
@@ -52,6 +59,6 @@
 | 1–4 kHz 语音频段被遮挡（<6 dB）的比例 | < 2% | < 2% |
 | 段间音乐短期响度 | ≤ 解说 +1 LU（标题时刻 +3 LU） | 同左 |
 
-做法：整句闪避（不在字间抽吸）→ 解说时把配乐的 1.2–4.5 kHz 挖掉约 4 dB → 音效和点缀音的瞬时响度压在解说下 8 LU → 逐句自动推子把背景压到解说下 15 LU → 段间配乐限幅 → 4 倍过采样的真峰值限幅器。`score.py` 每次都会打印这些指标，不达标就改参数重混。
+做法：整句闪避（不在字间抽吸）→ 解说时把配乐的 1.2–4.5 kHz 挖掉约 4 dB → 音效和点缀音的瞬时响度压在解说下 8 LU → 逐句自动推子把背景压到解说下 15 LU → 段间配乐限幅 → 4 倍过采样的真峰值限幅器（上限 −1.8 dBTP：AAC 编码会把真峰值抬高 0.1–0.4 dB，雷声、浪声、风声最明显，成片落在 −1.6 到 −1.8）。`score.py` 每次都会打印这些指标，不达标就改参数重混。
 
 纯音乐版另出一条（-16 LUFS），给不需要解说的场景用。

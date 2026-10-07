@@ -677,6 +677,7 @@ STEMS = ("music", "sting", "fx")
 VOICE_LUFS = -16.5  # narration alone, integrated
 MUSIC_LUFS = -19.0  # score alone before ducking, integrated
 MASTER_LUFS = -15.0 if CUT is None or DURATION > 180 else -14.5  # long films -15; short-form feeds play a touch louder
+TP_CEILING = -1.8  # AAC adds 0.1–0.4 dB of inter-sample peak (most on thunder, surf, wind); delivered files land at ≤ -1.2 dBTP
 BED_LUFS = -16.0  # music-only version
 DUCK_DB = {"music": -12.0, "sting": -6.0, "fx": -5.0}
 MARGIN = (14.0, 20.0)  # wanted voice-over-bed loudness per line, LU
@@ -876,10 +877,10 @@ def mix(stems):
 
     mix_voice = voice + bed
     g_master = 10 ** ((MASTER_LUFS - integrated(mix_voice)) / 20)
-    mix_voice, gr = limit(mix_voice * g_master, -1.2)
+    mix_voice, gr = limit(mix_voice * g_master, TP_CEILING)
     mix_music = stems["music"] + stems["sting"] + stems["fx"]
     mix_music, cut2 = level(mix_music, integrated(mix_music) + 7.0)
-    mix_music, gr2 = limit(mix_music * 10 ** ((BED_LUFS - integrated(mix_music)) / 20), -1.2)
+    mix_music, gr2 = limit(mix_music * 10 ** ((BED_LUFS - integrated(mix_music)) / 20), TP_CEILING)
     print(f"  music-only leveller max cut {cut2:.1f} dB", flush=True)
     for name, x, g_ in (("mix_voice", mix_voice, gr), ("mix_music", mix_music, gr2)):
         print(f"  {name}: {integrated(x):.1f} LUFS, true peak {true_peak_db(x):.2f} dBTP, limiter max GR {g_:.1f} dB", flush=True)

@@ -3,7 +3,8 @@
 这个目录是一条自动化的视频生产线：真实卫星地图 + 路线动画 + AI 配音 + 程序化配乐，把历史人物的行程做成横版长片、竖版短片等多个版本，发到 B站、抖音、视频号、小红书、YouTube。频道定位“跟着地图读历史”，每期都是“史 × 戏”：真实历史对照文学和传说（例：玄奘真实路线 ↔ 《西游记》）。
 
 - 第一期 **ep01 玄奘西行** 已完成，成片在 `out/ep01/`，数据在 `video/src/cuts/ep01/`。
-- 后 10 期的选题、钩子和发布日历在 `docs/08-content-plan.md`。
+- **日更**：每周五一部横版长片，其余六天发同一期拆出来的竖版短片，周四发下一期预告。每期 9 条成片，排期和后 10 期选题在 `docs/08-content-plan.md`。
+- 账号名“小山河司马”，口号“跟着地图读历史”（`video/src/config/brand.json`）。
 
 ## 新对话先做这三件事
 
@@ -63,14 +64,14 @@ cd video && npm run studio                                     # 交互预览
 
 ## 配音服务现状
 
-- `edge`（默认）：免费，已验证；发音靠等长同音字替换。
-- `doubao`（推荐的正式旁白）、`doubao_clone`（声音复刻）、`azure`、`minimax`：已按官方文档接好，**还没用真实 key 测过**。第一次使用先合成一句（`scripts/tts.py <cut.json> --provider doubao --only h1`），检查音频和 `meta.json` 里的逐字时间 `ct`。试听会覆盖这一句的缓存，确认可用后整条 cut 用同一个 provider 重跑，别让一条片子里混着两种声音。
+- `doubao`（**默认**，2026-10-07 实测可用）：豆包语音合成 2.0，音色“磁性解说男”，逐字时间戳和发音词典都生效。豆包句内停顿偏长，`tts.py` 会按 `max_pause` 压缩（长片 0.38 秒、短片 0.30 秒），只删静音和换气，逐字时间同步前移。原始返回缓存在 `data/tts/<ep>/<cut>/raw/`，只调后处理参数不会重复计费。
+- `edge`：免费备用，发音靠等长同音字替换。
+- `doubao_clone`（声音复刻）、`azure`、`minimax`：已按官方文档接好，**还没用真实 key 测过**。第一次使用先合成一句（`scripts/tts.py <cut.json> --provider doubao --only h1`），检查音频和 `meta.json` 里的逐字时间 `ct`。试听会覆盖这一句的缓存，确认可用后整条 cut 用同一个 provider 重跑，别让一条片子里混着两种声音。
 
-## 等用户提供的东西
+## 仓库与可选资源
 
-- 账号名 → 填 `video/src/config/brand.json` 的 `name`（为空时片尾只显示口号）。
-- 火山引擎豆包语音合成 2.0 的 API key → `.env` 的 `VOLC_API_KEY`；选定的音色 id → `config/voices.json` 的 `doubao.speaker`。或者提供 30 秒本人录音做声音复刻（`doubao_clone`）。
-- 可选：Azure / MiniMax key、商用配乐授权、图生视频 API。
+- 代码仓库：`git@github.com:Oblivionfun/video_ai_history.git`（公开仓库，`main` 分支）。提交身份只配在本仓库（`git config --local`）。推送会经过公司电脑管家的 pre-push 审计钩子，不要用 `--no-verify` 绕过。
+- 可选：声音复刻（`doubao_clone`，需要 30 秒本人录音）、Azure / MiniMax key、商用配乐授权、图生视频 API。
 
 ## 文档索引
 

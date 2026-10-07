@@ -7,11 +7,7 @@
  ],
  "gap": 0.45,
  "sub_max": 21,
- "voice": {
-  "provider": "edge",
-  "voice": "zh-CN-YunjianNeural",
-  "rate": "-6%"
- },
+ "voice": {"provider": "doubao"},
  "timeline_out": "main.timeline.json",
  "chapters": [
   {

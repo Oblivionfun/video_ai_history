@@ -3,7 +3,7 @@
   "episode": "ep01",
   "title": "一张地图，走完玄奘西行全程",
   "formats": ["portrait"],
-  "voice": {"provider": "edge", "voice": "zh-CN-YunjianNeural", "rate": "-3%"},
+  "voice": {"provider": "doubao", "speech_rate": 3, "max_pause": 0.34},
   "gap": 0.36,
   "sub_max_portrait": 14,
   "chapters": [

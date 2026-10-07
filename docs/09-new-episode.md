@@ -1,6 +1,6 @@
 # 09 · 做新一期（以 ep02 李白为例）
 
-从零到一整套成片（横版长片 + 3–4 条竖版短片 + 横版短片 + 竖版中长片 + 封面 + 字幕 + 发布清单）。每一步都只改数据文件，不需要改引擎代码。ep01 的长片 `XuanzangFilm` 是早期手写代码，**不要复制它**；新一期的长片写成 `main.cut.json`。
+从零到一整套成片：横版长片、竖版中长片、5 条竖版短片、1 条横版短片、下一期的竖版预告，加封面、字幕、发布清单，够一周日更（排期见 `docs/08-content-plan.md`）。每一步都只改数据文件，不需要改引擎代码。ep01 的长片 `XuanzangFilm` 是早期手写代码，**不要复制它**；新一期的长片写成 `main.cut.json`。
 
 | 要建/改的文件 | 作用 |
 |---|---|
@@ -90,7 +90,8 @@ export const JOURNEYS: Record<string, Journey> = {ep01: J01, ep02: makeJourney(R
 
 - 写法：口语、短句，每句 15–35 字；一句只讲一件事；数字用阿拉伯数字。语速约每秒 4.3 字，7 分钟长片约 1800 字。
 - `formats: ["landscape"]`；竖版中长片另写一条压缩版（参考 `ep01/m1-quancheng.cut.json`，2 分钟左右）。
-- 短片：一个问题 + 一个答案，40–70 秒，开头 2 秒内出钩子（`hook.lines`），参考 `ep01/s1-toudu.cut.json`。
+- 短片 5 条：一个问题 + 一个答案，50–70 秒，开头 2 秒内出钩子（`hook.lines`），参考 `ep01/s1-toudu.cut.json`、`s4-tangsengrou.cut.json`。其中一条加 `"formats": ["portrait", "landscape"]` 出 B站横版。
+- 下期预告：在**下一期**的目录里写 `t0-trailer.cut.json`（20–30 秒，钩子 + 2–3 个最强画面 + 发布日期），本期周四发。
 - 新的古地名、多音字先加进 `config/pronunciations.json`（`pinyin` 用数字调，`edge` 写同长度的同音字），再跑配音。
 
 ```bash

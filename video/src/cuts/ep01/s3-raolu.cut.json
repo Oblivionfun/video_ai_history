@@ -3,7 +3,7 @@
   "episode": "ep01",
   "title": "明明有近路，玄奘为什么绕远路？",
   "formats": ["portrait", "landscape"],
-  "voice": {"provider": "edge", "voice": "zh-CN-YunjianNeural", "rate": "-2%"},
+  "voice": {"provider": "doubao", "speech_rate": 6, "max_pause": 0.3},
   "gap": 0.34,
   "sub_max": 20,
   "sub_max_portrait": 14,

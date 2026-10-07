@@ -3,7 +3,7 @@
   "episode": "ep01",
   "title": "火焰山真的存在吗？",
   "formats": ["portrait"],
-  "voice": {"provider": "edge", "voice": "zh-CN-YunjianNeural", "rate": "-2%"},
+  "voice": {"provider": "doubao", "speech_rate": 6, "max_pause": 0.3},
   "gap": 0.32,
   "sub_max_portrait": 14,
   "chapters": [

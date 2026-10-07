@@ -1,0 +1,82 @@
+{
+  "id": "s5-dutou",
+  "episode": "ep01",
+  "title": "唐僧真的拿脑袋打过赌？",
+  "formats": ["portrait"],
+  "voice": {"provider": "doubao", "speech_rate": 6, "max_pause": 0.3},
+  "gap": 0.32,
+  "sub_max_portrait": 14,
+  "chapters": [
+    {"id": "hook", "lead": 0.25, "tail": 0.25, "lines": [
+      {"id": "h1", "text": "《西游记》车迟国斗法，悟空和妖道比砍头、比下油锅。"},
+      {"id": "h2", "text": "可真实的玄奘，真的拿自己的脑袋打过赌。"}
+    ]},
+    {"id": "body", "lead": 0.2, "tail": 0.3, "lines": [
+      {"id": "b1", "text": "公元六四二年，戒日王在曲女城召开大会，请玄奘做论主。"},
+      {"id": "b2", "text": "台下坐着十八位国王，三千多位大小乘僧人，还有两千多婆罗门和外道。"},
+      {"id": "b3", "text": "玄奘把自己的论文写好，挂在会场门外。"},
+      {"id": "b4", "text": "并且立下一句话：只要有人能驳倒其中一个字，他就斩首相谢。"},
+      {"id": "b5", "text": "结果大会开了十八天，没有一个人站出来辩驳。"},
+      {"id": "b6", "text": "大乘僧人尊他为大乘天，小乘僧人尊他为解脱天。"},
+      {"id": "b7", "text": "按照当地的规矩，戒日王请他骑上大象，巡游全场。"}
+    ]},
+    {"id": "end", "lead": 0.3, "tail": 4.2, "lines": [
+      {"id": "e1", "text": "小说里的车迟国斗法，赌的是法术；真实的曲女城，玄奘赌上的是学问，还有性命。"}
+    ]}
+  ],
+  "hook": {"kicker": "玄奘西行 · 历史 × 西游记", "lines": ["唐僧真的拿", "脑袋打过赌？"]},
+  "camera": [
+    {"at": "start", "ll": [79.92, 27.05], "zoom": 7.7, "pitch": 56, "bearing": 8},
+    {"at": "h2", "ll": [79.95, 27.03], "zoom": 8.0, "pitch": 58, "bearing": 16},
+    {"at": "b1", "ll": [82.6, 26.2], "zoom": 6.1, "pitch": 50, "bearing": -6, "cut": true},
+    {"at": "b1:end", "ll": [81.0, 26.6], "zoom": 6.5, "pitch": 52, "bearing": 0},
+    {"at": "b2", "ll": [79.92, 27.05], "zoom": 7.9, "pitch": 58, "bearing": 18},
+    {"at": "b4:end", "ll": [79.93, 27.04], "zoom": 8.2, "pitch": 60, "bearing": 26},
+    {"at": "b6:end", "ll": [79.94, 27.04], "zoom": 8.35, "pitch": 60, "bearing": 34},
+    {"at": "b7:end", "ll": [79.96, 27.03], "zoom": 8.1, "pitch": 58, "bearing": 40},
+    {"at": "e1", "ll": [80.6, 26.6], "zoom": 6.7, "pitch": 50, "bearing": 2},
+    {"at": "end", "ll": [81.2, 26.2], "zoom": 6.1, "pitch": 46, "bearing": -8}
+  ],
+  "route": [
+    {"at": "start", "node": "nalanda2"},
+    {"at": "b1", "node": "nalanda2"},
+    {"at": "b1:end+0.5", "node": "kannauj2"}
+  ],
+  "overlays": [
+    {"type": "pin", "pin": "p_kannauj", "from": "h2", "to": "b1"},
+    {"type": "city", "node": "nalanda", "side": "l", "from": "b1", "to": "b1:曲女城"},
+    {"type": "walker", "from": "b1", "to": "b1:end+0.6"},
+    {"type": "city", "node": "kannauj", "side": "l", "from": "b1:曲女城-0.2", "to": "b2"},
+    {"type": "city", "node": "kannauj", "side": "l", "from": "b7", "to": "b7:end"},
+    {"type": "pin", "pin": "p_kannauj", "from": "e1", "to": "end-3.6"}
+  ],
+  "cards": [
+    {"type": "plate", "src": "xy_chechi", "tag": "西游记 · 第四十四至四十六回", "title": "车迟国斗法", "sub": "砍头 · 剖腹 · 下油锅", "fx": 0.5, "from": "h1+0.1", "to": "h1:end+0.2"},
+    {"type": "image", "src": "hs_kannauj", "kind": "history", "tag": "曲女城 · 大会", "title": "十八位国王 · 数千僧众", "sub": "大小乘僧三千余人 · 婆罗门及外道两千余人", "from": "b2-0.1", "to": "b2:end+0.2"},
+    {"type": "quote", "lines": ["若其间有一字无理", "能难破者", "请斩首相谢"], "source": "《大唐大慈恩寺三藏法师传》", "from": "b4-0.1", "to": "b4:end+0.5"},
+    {"type": "facts", "tag": "十八天 · 无人辩驳", "title": "大乘天 · 解脱天", "items": ["大乘僧众尊他为“大乘天”", "小乘僧众尊他为“解脱天”"], "from": "b6-0.1", "to": "b6:end+0.3"}
+  ],
+  "end": {"from": "e1:end+0.35", "full": "完整版 · 看主页"},
+  "cover": {"at": "h2:end-0.3", "lines": ["唐僧真的拿", "脑袋打过赌？"]},
+  "audio": {
+    "sections": [
+      {"from": "start", "mood": "mystery"},
+      {"from": "b1", "mood": "regal"},
+      {"from": "b4", "mood": "tension"},
+      {"from": "b5", "mood": "build"},
+      {"from": "b6", "mood": "triumph"},
+      {"from": "e1", "mood": "reflect"},
+      {"from": "end-3.9", "mood": "outro"}
+    ],
+    "cues": [
+      {"at": "start", "kind": "boom"},
+      {"at": "h1+0.1", "kind": "plate"},
+      {"at": "h2", "kind": "hit"},
+      {"at": "b1", "kind": "whoosh"},
+      {"at": "b4:斩首", "kind": "toll"},
+      {"at": "b5:十八天", "kind": "gliss"},
+      {"at": "b6", "kind": "bell"},
+      {"at": "end-3.6", "kind": "hit"}
+    ]
+  }
+}

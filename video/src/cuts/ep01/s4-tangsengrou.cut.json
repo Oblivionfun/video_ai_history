@@ -1,0 +1,88 @@
+{
+  "id": "s4-tangsengrou",
+  "episode": "ep01",
+  "title": "真有人要拿唐僧肉祭神？",
+  "formats": ["portrait"],
+  "voice": {"provider": "doubao", "speech_rate": 6, "max_pause": 0.3},
+  "gap": 0.32,
+  "sub_max_portrait": 14,
+  "chapters": [
+    {"id": "hook", "lead": 0.25, "tail": 0.25, "lines": [
+      {"id": "h1", "text": "《西游记》里，妖怪们个个都想吃唐僧肉。"},
+      {"id": "h2", "text": "可在真实的历史上，还真有人要拿玄奘的血肉去祭神。"}
+    ]},
+    {"id": "body", "lead": 0.2, "tail": 0.3, "lines": [
+      {"id": "b1", "text": "那时玄奘已经进入印度，正坐船顺着恒河东下。"},
+      {"id": "b2", "text": "两岸的密林里，突然冲出十几条贼船。"},
+      {"id": "b3", "text": "这伙贼人信奉突伽天神，每年秋天，都要找一个相貌端正的人，杀了取血肉来祭祀。"},
+      {"id": "b4", "text": "他们一眼就看中了玄奘。"},
+      {"id": "b5", "text": "祭坛很快搭好。玄奘只求了一件事：给他一点时间，让他安心地走。"},
+      {"id": "b6", "text": "他闭目静坐，一心念诵弥勒菩萨。"},
+      {"id": "b7", "text": "就在这时，黑风四起，折树飞沙，河上涌起大浪，船都被打翻了。"},
+      {"id": "b8", "text": "贼人吓坏了，以为触怒了天神，纷纷跪地忏悔，还向玄奘受了戒。"}
+    ]},
+    {"id": "end", "lead": 0.3, "tail": 4.2, "lines": [
+      {"id": "e1", "text": "后来小说里，妖怪们排着队想吃唐僧肉，或许就有这段经历的影子。"}
+    ]}
+  ],
+  "hook": {"kicker": "玄奘西行 · 历史 × 西游记", "lines": ["真有人要拿", "唐僧肉祭神？"]},
+  "camera": [
+    {"at": "start", "ll": [81.1, 26.45], "zoom": 6.5, "pitch": 50, "bearing": -10},
+    {"at": "h2", "ll": [80.7, 26.35], "zoom": 7.2, "pitch": 54, "bearing": -2},
+    {"at": "b1", "ll": [80.2, 26.75], "zoom": 7.0, "pitch": 52, "bearing": -16},
+    {"at": "b1:end", "ll": [80.55, 26.4], "zoom": 7.6, "pitch": 56, "bearing": -4},
+    {"at": "b2", "ll": [80.62, 26.32], "zoom": 8.0, "pitch": 58, "bearing": 6},
+    {"at": "b4:end", "ll": [80.62, 26.3], "zoom": 8.2, "pitch": 60, "bearing": 14},
+    {"at": "b6:end", "ll": [80.64, 26.3], "zoom": 8.35, "pitch": 60, "bearing": 20},
+    {"at": "b7", "ll": [80.6, 26.33], "zoom": 7.9, "pitch": 58, "bearing": 30, "cut": true},
+    {"at": "b8:end", "ll": [80.66, 26.3], "zoom": 8.1, "pitch": 58, "bearing": 36},
+    {"at": "e1", "ll": [82.4, 26.0], "zoom": 6.3, "pitch": 50, "bearing": -6},
+    {"at": "end", "ll": [83.4, 25.7], "zoom": 5.8, "pitch": 46, "bearing": -14}
+  ],
+  "route": [
+    {"at": "start", "node": "kannauj"},
+    {"at": "b1", "node": "kannauj"},
+    {"at": "b1:end+0.4", "node": "ganges"},
+    {"at": "e1", "node": "ganges"},
+    {"at": "e1:end", "node": "nalanda"}
+  ],
+  "overlays": [
+    {"type": "pin", "pin": "p_ganges", "from": "h2", "to": "b1"},
+    {"type": "city", "node": "kannauj", "side": "l", "from": "b1-0.2", "to": "b1:end"},
+    {"type": "walker", "from": "b1", "to": "b1:end+0.6"},
+    {"type": "label", "anchor": "x:ganges_r", "text": "殑伽河", "sub": "恒河", "style": "area", "from": "b1:恒河-0.2", "to": "b2:end"},
+    {"type": "pin", "pin": "p_ganges", "from": "e1", "to": "end-3.6"},
+    {"type": "walker", "from": "e1+1", "to": "e1:end"}
+  ],
+  "cards": [
+    {"type": "facts", "tag": "恒河 · 贼船", "title": "祭祀突伽天神", "items": ["每年秋天选一个人", "相貌端正", "杀了取血肉祭神"], "from": "b3-0.1", "to": "b4:end+0.2"},
+    {"type": "image", "src": "hs_ganges", "kind": "history", "tag": "恒河", "title": "祭坛之上", "sub": "闭目静坐 · 一心念诵弥勒菩萨", "from": "b5-0.1", "to": "b6:end+0.2"},
+    {"type": "quote", "lines": ["黑风四起", "折树飞沙", "河流涌浪"], "source": "《大唐大慈恩寺三藏法师传》", "from": "b7-0.1", "to": "b7:end+0.5"},
+    {"type": "plate", "src": "xy_captured", "tag": "西游记 · 九九八十一难", "title": "唐僧肉", "sub": "原型之说 · 恒河遇贼", "fx": 0.5, "from": "e1-0.1", "to": "e1:end+0.3"}
+  ],
+  "fx": {"sand": [["b7", "b7:end+0.6"]]},
+  "end": {"from": "e1:end+0.35", "full": "完整版 · 看主页"},
+  "cover": {"at": "h2:end-0.3", "lines": ["真有人要拿", "唐僧肉祭神？"]},
+  "audio": {
+    "sections": [
+      {"from": "start", "mood": "mystery"},
+      {"from": "b2", "mood": "tension"},
+      {"from": "b5", "mood": "silence"},
+      {"from": "b7", "mood": "storm"},
+      {"from": "b8", "mood": "release"},
+      {"from": "e1", "mood": "bittersweet"},
+      {"from": "end-3.9", "mood": "outro"}
+    ],
+    "cues": [
+      {"at": "start", "kind": "boom"},
+      {"at": "h2", "kind": "hit"},
+      {"at": "b2:突然", "kind": "whoosh"},
+      {"at": "b4:看中", "kind": "toll"},
+      {"at": "b7:黑风", "kind": "thunder"},
+      {"at": "b7:大浪", "kind": "water"},
+      {"at": "b8:受了戒", "kind": "bell"},
+      {"at": "e1", "kind": "plate"},
+      {"at": "end-3.6", "kind": "hit"}
+    ]
+  }
+}

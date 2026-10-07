@@ -139,13 +139,69 @@ def estimate_char_times(text, total):
 def trim(y, sr):
     env = np.convolve(np.abs(y), np.ones(int(0.01 * sr)) / int(0.01 * sr), mode="same")
     idx = np.where(env > 10 ** (-46 / 20))[0]
-    start = max(0, idx[0] - int(0.03 * sr))
+    # a click or breath before the first word is a short isolated burst; start at the first sustained run
+    breaks = np.where(np.diff(idx) > 1)[0]
+    starts, ends = np.r_[idx[0], idx[breaks + 1]], np.r_[idx[breaks], idx[-1]]
+    sustained = np.where(ends - starts >= int(0.04 * sr))[0]
+    first = starts[sustained[0]] if len(sustained) else idx[0]
+    start = max(0, first - int(0.03 * sr))
     end = min(len(y), idx[-1] + int(0.10 * sr))
     y = y[start:end].copy()
     fade = int(0.01 * sr)
     y[:fade] *= np.linspace(0, 1, fade)
     y[-fade:] *= np.linspace(1, 0, fade)
     return y, start / sr
+
+
+def tighten(y, sr, ct, text, max_pause):
+    """Cap pauses: max_pause at punctuation, 0.6 × max_pause between words; character times follow.
+
+    Only audio more than 24 dB below the line's peak (silence, breaths, decay tails) is removed, so speech
+    is never cut. Doubao pauses 0.6–1.1 s at commas and after words like 所以, where a narrator takes 0.3–0.4 s.
+    """
+    hop = int(0.01 * sr)
+    n = len(y) // hop
+    lv = 20 * np.log10(np.sqrt(np.mean(y[: n * hop].reshape(n, hop) ** 2, axis=1)) + 1e-9)
+    quiet = lv < lv.max() - 24
+    spoken = [i for i, ch in enumerate(text) if ch not in PUNCT]
+    cuts = []
+    for p, q in zip(spoken, spoken[1:]):
+        cap = max_pause if q - p > 1 else 0.6 * max_pause
+        a, b = min(n, int(ct[p] / 0.01) + 8), min(n, int(ct[q] / 0.01) + 3)
+        best, s = (0, 0), None
+        for f in range(a, b + 1):
+            if f < b and quiet[f]:
+                s = f if s is None else s
+            elif s is not None:
+                best = max(best, (f - s, s))
+                s = None
+        length, s = best
+        if length * 0.01 > cap + 0.05:
+            keep_a = int(0.45 * cap / 0.01)
+            keep_b = int(cap / 0.01) - keep_a
+            c0, c1 = (s + keep_a) * hop, (s + length - keep_b) * hop
+            if not cuts or c0 >= cuts[-1][1] + hop:
+                cuts.append((c0, c1))
+    if not cuts:
+        return y, ct
+    xf = int(0.006 * sr)
+    parts, last = [], 0
+    for c0, c1 in cuts:
+        parts.append(y[last:c0 + xf].copy())
+        last = c1
+    parts.append(y[last:].copy())
+    out = parts[0]
+    for p in parts[1:]:
+        ramp = np.linspace(0, 1, xf)
+        out[-xf:] = out[-xf:] * (1 - ramp) + p[:xf] * ramp
+        out = np.concatenate([out, p[xf:]])
+
+    def remap(t):
+        k = t * sr
+        removed = sum(min(max(0.0, k - c0), c1 - c0) for c0, c1 in cuts)
+        return (k - removed) / sr
+
+    return out, [remap(t) for t in ct]
 
 
 def to_mono48k(path_in):
@@ -411,15 +467,29 @@ async def run(spec_path, provider_name=None, only=None, force=False):
     meta = json.loads(meta_path.read_text()) if meta_path.exists() else {}
     sem = asyncio.Semaphore(4)
 
+    max_pause = cfg.get("max_pause")
+
     async def one(lid, text):
-        sig = hashlib.sha1(f"{prov.key()}|{text}".encode()).hexdigest()[:16]
+        raw_key = hashlib.sha1(f"{prov.key()}|{text}".encode()).hexdigest()[:16]
+        sig = hashlib.sha1(f"{prov.key()}|{text}{f'|mp{max_pause}' if max_pause else ''}".encode()).hexdigest()[:16]
         if not force and meta.get(lid, {}).get("sig") == sig and (od / f"{lid}.wav").exists():
             return None
-        async with sem:
-            y, spoken, tokens = await prov.synth(text, od)
+        # the provider's untouched output, so changing post-processing never pays for synthesis twice
+        raw = od / "raw" / f"{raw_key}.npz"
+        if raw.exists() and not force:
+            z = np.load(raw)
+            y, spoken, tokens = z["y"].astype(np.float64), str(z["spoken"]), [(w, float(t)) for w, t in json.loads(str(z["tokens"]))]
+        else:
+            async with sem:
+                y, spoken, tokens = await prov.synth(text, od)
+            raw.parent.mkdir(exist_ok=True)
+            np.savez(raw, y=y.astype(np.float32), spoken=spoken, tokens=json.dumps(tokens, ensure_ascii=False))
         y, offset = trim(y, SR)
         dur = len(y) / SR
         ct = char_times_from_tokens(spoken, [(w, t - offset) for w, t in tokens], dur)
+        if max_pause:
+            y, ct = tighten(y, SR, ct, spoken, max_pause)
+            dur = len(y) / SR
         ct = [round(max(0.0, min(dur, x)), 3) for x in ct]
         sf.write(od / f"{lid}.wav", y.astype(np.float32), SR, subtype="PCM_24")
         meta[lid] = {"text": text, "dur": round(dur, 4), "ct": ct, "sig": sig, "provider": prov.key(), "timed": bool(tokens)}

@@ -77,6 +77,26 @@
       "folder": "06_竖版中长片 · 一张地图走完玄奘西行",
       "name": "一张地图走完玄奘西行_竖版",
       "covers": {"9x16": "ep01-m1-quancheng-cover-v", "3x4": "ep01-m1-quancheng-cover-34"}
+    },
+    {
+      "key": "s4",
+      "comp": "ep01-s4-tangsengrou-v",
+      "audio": "s4-tangsengrou",
+      "timeline": "s4-tangsengrou.timeline.json",
+      "subs": "subsP",
+      "folder": "07_竖版短片 · 真有人要拿唐僧肉祭神",
+      "name": "真有人要拿唐僧肉祭神_竖版",
+      "covers": {"9x16": "ep01-s4-tangsengrou-cover-v", "3x4": "ep01-s4-tangsengrou-cover-34"}
+    },
+    {
+      "key": "s5",
+      "comp": "ep01-s5-dutou-v",
+      "audio": "s5-dutou",
+      "timeline": "s5-dutou.timeline.json",
+      "subs": "subsP",
+      "folder": "08_竖版短片 · 唐僧真的拿脑袋打过赌",
+      "name": "唐僧真的拿脑袋打过赌_竖版",
+      "covers": {"9x16": "ep01-s5-dutou-cover-v", "3x4": "ep01-s5-dutou-cover-34"}
     }
   ]
 }

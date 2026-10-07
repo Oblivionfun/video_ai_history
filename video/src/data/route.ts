@@ -237,5 +237,5 @@ export const ROUTE: RouteData = {
   LEG_STYLE: {return: 'return'},
   STORY_PINS,
   AREA_LABELS,
-  EXTRA: {yulin: [96.0, 40.05], lingjiu: [85.45, 25.0], huoyan: [89.95, 42.93]},
+  EXTRA: {yulin: [96.0, 40.05], lingjiu: [85.45, 25.0], huoyan: [89.95, 42.93], ganges_r: [81.0, 25.98]},
 };

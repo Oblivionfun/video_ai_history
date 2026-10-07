@@ -45,7 +45,7 @@ cd video && npm run studio                                     # 交互预览
 | 新一期的路线 | `video/src/episodes/<ep>/route.ts` + 在 `episodes/index.ts` 注册 |
 | 片尾大字、印章、下期预告、交付清单 | `video/src/cuts/<ep>/episode.json` |
 | 频道名、口号、更新频率 | `video/src/config/brand.json` |
-| 频道头像 | `video/src/brand/Avatar.tsx`（现用 `Avatar-seal2` 竖长印“山河”）；导出：`cd video && node scripts/render.mjs --out ../out/brand Avatar-seal2` |
+| 频道头像 | `video/src/brand/Avatar.tsx`（推荐 `Avatar-seal2` 竖长印“山河”，另有 `Avatar-seal4`、`Avatar-brush` 和工笔人物图 `video/public/img/brand_xiaosima.jpg`）；导出：`cd video && node scripts/render.mjs --out ../out/brand Avatar-seal2` |
 | 配音服务与音色 | `config/voices.json`，密钥放 `.env`（模板 `.env.example`） |
 | 读音 | `config/pronunciations.json` |
 | 视觉风格、配色、字体、插画提示词 | `docs/03-style-guide.md`、`video/src/theme.ts` |

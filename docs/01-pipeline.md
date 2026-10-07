@@ -48,6 +48,7 @@ xuanzang/
                      Portrait / Landscape（两种版式） OpenCards（片名、章节卡） ShortFilm ShortCover
     ui/              卡片、特效（尘、雪、沙、颗粒、暗角）、字幕、片尾、冷开场
     config/brand.json  频道名、口号、更新频率（全频道共用）
+    brand/Avatar.tsx   频道头像（1024×1024，三种印章方案；平台按圆形裁切）
     theme.ts fonts.ts text.ts（预加载所有用到的字形）
   video/public/      img/ img2x/（插画） fx/（颗粒贴图） tiles/（地图瓦片，不进 git）
   docs/              规范与经验（本目录）

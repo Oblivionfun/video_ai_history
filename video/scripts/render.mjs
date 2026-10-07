@@ -1,6 +1,6 @@
 // Bundle once, then render videos and covers.
 // usage: node scripts/render.mjs --out ../out/ep01/_build [--concurrency 6] ep01-s1-toudu-v ep01-s1-toudu-cover-v ...
-// Ids containing "cover" (or "Cover") are rendered as a single PNG still; everything else as a muted H.264 MP4.
+// One-frame compositions (covers, avatars) are rendered as a PNG still; everything else as a muted H.264 MP4.
 import {bundle} from '@remotion/bundler';
 import {openBrowser, renderMedia, renderStill, selectComposition} from '@remotion/renderer';
 import fs from 'node:fs';
@@ -23,7 +23,7 @@ const browser = await openBrowser('chrome', {chromiumOptions: {gl: 'angle'}});
 for (const id of ids) {
   const composition = await selectComposition({serveUrl, id, puppeteerInstance: browser});
   const t0 = Date.now();
-  if (/cover/i.test(id)) {
+  if (composition.durationInFrames === 1) {
     const output = path.join(outDir, `${id}.png`);
     await renderStill({serveUrl, composition, frame: 0, output, imageFormat: 'png', puppeteerInstance: browser, timeoutInMilliseconds: 240000});
     console.log(`${id}: still -> ${output} (${((Date.now() - t0) / 1000).toFixed(1)}s)`);

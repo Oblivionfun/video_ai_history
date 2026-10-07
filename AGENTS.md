@@ -49,7 +49,7 @@ cd video && npm run studio                                     # 交互预览
 | 配音服务与音色 | `config/voices.json`，密钥放 `.env`（模板 `.env.example`） |
 | 读音 | `config/pronunciations.json` |
 | 视觉风格、配色、字体、插画提示词 | `docs/03-style-guide.md`、`video/src/theme.ts` |
-| 各平台规格与发布文案 | `docs/06-platforms.md`、`docs/publish/<ep>-*.md` |
+| 各平台规格、账号资料（头像、签名）与发布文案 | `docs/06-platforms.md`、`docs/publish/<ep>-*.md` |
 | 地图覆盖范围、河流 | `scripts/fetch_tiles.py --bbox`、`scripts/extract_rivers.py` |
 
 ## 约定

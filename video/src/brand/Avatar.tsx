@@ -6,7 +6,7 @@ import {COLOR, FONT} from '../theme';
 import {Grain} from '../ui/Effects';
 
 /** Channel avatar, 1024×1024. Platforms crop it to a circle, so everything stays within r ≈ 470 of the centre. */
-export type AvatarVariant = 'seal4' | 'seal2' | 'brush';
+export type AvatarVariant = 'seal4' | 'seal2' | 'brush' | 'brushBold';
 
 const S = 1024;
 const C = S / 2;
@@ -95,6 +95,16 @@ export const Avatar: React.FC<{variant: AvatarVariant}> = ({variant}) => {
             山河
           </div>
           <Seal id="sb" x={640} y={590} w={130} h={220} cols={[['司', '马']]} size={96} rot={-4} />
+        </>
+      )}
+      {variant === 'brushBold' && (
+        <>
+          <AbsoluteFill style={{background: 'radial-gradient(ellipse 62% 40% at 50% 44%, rgba(5,7,10,0.55), rgba(5,7,10,0) 100%)'}} />
+          <Route d="M 150 700 C 280 650, 360 770, 480 712 S 590 676, 640 716" end={[640, 716]} />
+          <div style={{position: 'absolute', left: 0, right: 0, top: 205, textAlign: 'center', fontFamily: FONT.brush, fontSize: 400, lineHeight: 1, color: COLOR.paper, letterSpacing: '-0.05em', textShadow: '0 0 28px rgba(0,0,0,0.9), 0 10px 50px rgba(0,0,0,0.9)'}}>
+            山河
+          </div>
+          <Seal id="sbb" x={662} y={604} w={152} h={258} cols={[['司', '马']]} size={114} rot={-4} />
         </>
       )}
       <Grain frame={3} opacity={0.05} />

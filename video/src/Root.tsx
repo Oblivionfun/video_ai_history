@@ -40,7 +40,7 @@ export const RemotionRoot: React.FC = () => {
           ? [<Composition key={compId(c, 'ch')} id={compId(c, 'cover-h')} component={ShortCover} defaultProps={{cutKey: c.key, aspect: 'h' as const}} durationInFrames={1} fps={FPS} width={1920} height={1080} />]
           : []),
       ])}
-      {(['seal4', 'seal2', 'brush'] as const).map((v) => (
+      {(['seal4', 'seal2', 'brush', 'brushBold'] as const).map((v) => (
         <Composition key={v} id={`Avatar-${v}`} component={Avatar} defaultProps={{variant: v}} durationInFrames={1} fps={FPS} width={1024} height={1024} />
       ))}
       <Composition id="MapTest" component={MapTest} durationInFrames={120} fps={30} width={1920} height={1080} />

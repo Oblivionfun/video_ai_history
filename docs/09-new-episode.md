@@ -130,7 +130,7 @@ export const JOURNEYS: Record<string, Journey> = {ep01: J01, ep02: makeJourney(R
 
 - `identity`：片尾大字 `film`、印章 `seal`（1–2 字）、标语 `tagline`、封面角标 `cover_tag`。
 - `next`：本期片尾的下期预告（标题、副标题、预告图）。
-- `deliverables`：每条成片一项（`comp` = 合成 id：`ep02-main-h`、`ep02-s1-xxx-v`；`covers` 填封面合成 id）。`folder` 按“序号_版式 · 用途”命名。
+- `deliverables`：每条成片一项（`comp` = 合成 id：`ep02-main-h`、`ep02-s1-xxx-v`；`covers` 填封面合成 id，横版片子要同时给 `"16x10": "<ep>-<id>-cover-b"`（B站）和 `"16x9"`）。`folder` 按“序号_版式 · 用途”命名。
 
 再按 `docs/publish/ep01-玄奘西行.md` 的格式写 `docs/publish/ep02-<标题>.md`（标题 / 简介 / 标签 / 章节时间 / 置顶评论 / 发布时间），打包时会复制到 `out/ep02/发布清单.md`。
 

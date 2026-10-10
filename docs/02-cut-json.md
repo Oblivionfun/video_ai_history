@@ -1,6 +1,6 @@
 # 02 · cut JSON 规范
 
-一个 `video/src/cuts/<ep>/<id>.cut.json` 就是一条完整的片子：解说稿、镜头、路线、地图标注、卡片、特效、配乐和音效点、片尾、封面。**不需要写代码**——保存后 Remotion 自动注册合成：`<ep>-<id>-v`（9:16）、`<ep>-<id>-h`（16:9）以及封面 `<ep>-<id>-cover-v / -cover-34 / -cover-h`。
+一个 `video/src/cuts/<ep>/<id>.cut.json` 就是一条完整的片子：解说稿、镜头、路线、地图标注、卡片、特效、配乐和音效点、片尾、封面。**不需要写代码**——保存后 Remotion 自动注册合成：`<ep>-<id>-v`（9:16）、`<ep>-<id>-h`（16:9）以及封面 `<ep>-<id>-cover-v / -cover-34 / -cover-h / -cover-b`（`-cover-b` 是 B站用的 16:10）。
 
 完整示例：`video/src/cuts/ep01/s1-toudu.cut.json`（竖版短片）、`s3-raolu.cut.json`（横竖两版）、`m1-quancheng.cut.json`（2 分钟全程）。
 

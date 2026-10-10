@@ -1,7 +1,7 @@
 import React from 'react';
 import {Composition} from 'remotion';
 import {Avatar} from './brand/Avatar';
-import {Cover, MainCover34} from './Cover';
+import {Cover, CoverBili, MainCover34} from './Cover';
 import {Film} from './Film';
 import {DURATION, FPS} from './lib/time';
 import {compId, CUTS} from './shorts/registry';
@@ -15,6 +15,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="XuanzangFilm" component={Film} durationInFrames={Math.ceil(DURATION * FPS)} fps={FPS} width={1920} height={1080} />
       <Composition id="Cover" component={Cover} durationInFrames={1} fps={FPS} width={1920} height={1080} />
       <Composition id="Cover34" component={MainCover34} durationInFrames={1} fps={FPS} width={1080} height={1440} />
+      <Composition id="CoverBili" component={CoverBili} durationInFrames={1} fps={FPS} width={1920} height={1200} />
       {CUTS.flatMap((c) =>
         c.json.formats.map((o) => (
           <Composition
@@ -37,7 +38,10 @@ export const RemotionRoot: React.FC = () => {
             ]
           : []),
         ...(c.json.formats.includes('landscape')
-          ? [<Composition key={compId(c, 'ch')} id={compId(c, 'cover-h')} component={ShortCover} defaultProps={{cutKey: c.key, aspect: 'h' as const}} durationInFrames={1} fps={FPS} width={1920} height={1080} />]
+          ? [
+              <Composition key={compId(c, 'ch')} id={compId(c, 'cover-h')} component={ShortCover} defaultProps={{cutKey: c.key, aspect: 'h' as const}} durationInFrames={1} fps={FPS} width={1920} height={1080} />,
+              <Composition key={compId(c, 'cb')} id={compId(c, 'cover-b')} component={ShortCover} defaultProps={{cutKey: c.key, aspect: 'b' as const}} durationInFrames={1} fps={FPS} width={1920} height={1200} />,
+            ]
           : []),
       ])}
       {(['seal4', 'seal2', 'brush', 'brushBold'] as const).map((v) => (

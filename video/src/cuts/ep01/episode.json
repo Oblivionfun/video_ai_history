@@ -25,7 +25,7 @@
       "subs": "subs",
       "folder": "01_横版长片 · B站 YouTube 西瓜 抖音横屏",
       "name": "玄奘西行_629-645_横版长片",
-      "covers": {"16x9": "Cover", "3x4": "Cover34"},
+      "covers": {"16x10": "CoverBili", "16x9": "Cover", "3x4": "Cover34"},
       "music_only": true
     },
     {
@@ -66,7 +66,7 @@
       "subs": "subs",
       "folder": "05_横版短片 · 明明有近路为何绕远路（B站）",
       "name": "明明有近路为何绕远路_横版",
-      "covers": {"16x9": "ep01-s3-raolu-cover-h"}
+      "covers": {"16x10": "ep01-s3-raolu-cover-b", "16x9": "ep01-s3-raolu-cover-h"}
     },
     {
       "key": "m1",

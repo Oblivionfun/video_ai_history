@@ -10,24 +10,27 @@ import {cutByKey} from './registry';
 import {ShortOverlay} from './ShortOverlay';
 
 /** Thumbnail for a cut: map frozen at `cover.at` with its pins, plus the hook as big type. */
-export const ShortCover: React.FC<{cutKey: string; aspect: 'v' | '34' | 'h'}> = ({cutKey, aspect}) => {
+/** aspect: 'v' 9:16 · '34' 3:4 · 'h' 16:9 · 'b' 16:10 for B站, whose app feeds may crop to 4:3 (keep text in x 160–1760). */
+export const ShortCover: React.FC<{cutKey: string; aspect: 'v' | '34' | 'h' | 'b'}> = ({cutKey, aspect}) => {
   useFonts();
   const entry = cutByKey(cutKey);
   const cut = useMemo(() => buildCut(entry), [entry]);
   const j = entry.json;
   const at = cut.T(j.cover?.at ?? 'h2');
-  const o = aspect === 'h' ? 'landscape' : 'portrait';
+  const wide = aspect === 'h' || aspect === 'b';
+  const o = wide ? 'landscape' : 'portrait';
   const lines = j.cover?.lines ?? j.hook.lines;
   const cam = useMemo(
     () => (tt: number) => {
       const c = cut.cam(tt, o);
       if (aspect === 'v') return {...c, padT: 640, padB: 260};
       if (aspect === '34') return {...c, padT: 520, padB: 120};
+      if (aspect === 'b') return {...c, zoom: c.zoom - 0.18, padR: 0, padL: 660};
       return {...c, padR: 0, padL: 860};
     },
     [cut, o, aspect],
   );
-  const big = aspect === 'h' ? 150 : aspect === 'v' ? 160 : 140;
+  const big = wide ? 150 : aspect === 'v' ? 160 : 140;
   return (
     <AbsoluteFill style={{background: '#000'}}>
       <MapScene cam={cam} head={cut.head} journey={cut.journey} preview={() => 0} time={at} mercator filter="contrast(1.1) saturate(1.15)">
@@ -35,10 +38,10 @@ export const ShortCover: React.FC<{cutKey: string; aspect: 'v' | '34' | 'h'}> = 
         <ShortOverlay cut={cut} o={o} />
       </MapScene>
       <Vignette strength={0.45} />
-      {aspect === 'h' ? (
+      {wide ? (
         <>
           <AbsoluteFill style={{background: 'linear-gradient(90deg, rgba(4,6,9,0.9) 0%, rgba(4,6,9,0.75) 34%, rgba(4,6,9,0) 55%)'}} />
-          <div style={{position: 'absolute', left: 120, top: 240, width: 800}}>
+          <div style={{position: 'absolute', left: aspect === 'b' ? 200 : 120, top: aspect === 'b' ? 300 : 240, width: 800}}>
             <div style={{fontFamily: FONT.serif, fontWeight: 600, fontSize: 30, letterSpacing: '0.32em', color: COLOR.goldBright}}>{j.cover?.kicker ?? j.hook.kicker}</div>
             {lines.map((l, i) => (
               <div key={l} style={{fontFamily: FONT.brush, fontSize: big, lineHeight: 1.1, color: i ? '#ffe9c4' : COLOR.paper, textShadow: '0 6px 40px rgba(0,0,0,0.9)', marginTop: i ? 0 : 18, whiteSpace: 'nowrap'}}>

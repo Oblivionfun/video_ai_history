@@ -13,6 +13,7 @@ import {SealBox} from './ui/Titles';
 /** Film time whose route state the cover shows: journey complete, every story pin out. */
 const COVER_T = 437.5;
 const coverCam = (): Cam => ({center: [86.6, 29.4], zoom: 4.1, pitch: 22, bearing: 0, padR: 660});
+const biliCam = (): Cam => ({center: [86.6, 29.4], zoom: 3.92, pitch: 22, bearing: 0, padR: 800, padL: 170});
 const PIN_SIDE: Record<string, 'l' | 'r'> = {p_changan: 'l'};
 /** The northern pins crowd at this zoom: spread them vertically (px). */
 const PIN_DY: Record<string, number> = {p_huoyan: -12, p_gaochang: -12, p_mohe: 6, p_guazhou: 24};
@@ -32,11 +33,25 @@ const Pins: React.FC = () => {
   );
 };
 
-export const Cover: React.FC = () => {
+interface Layout {
+  cam: () => Cam;
+  /** title block left edge and top, divider x and vertical span */
+  left: number;
+  top: number;
+  rule: number;
+  ruleTop: number;
+  ruleH: number;
+}
+
+const COVER_16x9: Layout = {cam: coverCam, left: 1268, top: 132, rule: 1222, ruleTop: 150, ruleH: 760};
+/** B站's cover slot is 16:10 and some app feeds crop it to 4:3 (x 160–1760); the duration badge sits bottom right. */
+const COVER_BILI: Layout = {cam: biliCam, left: 1140, top: 196, rule: 1094, ruleTop: 214, ruleH: 780};
+
+const MainCover: React.FC<{l: Layout}> = ({l}) => {
   useFonts();
   return (
     <AbsoluteFill style={{background: '#000'}}>
-      <MapScene cam={coverCam} mercator time={COVER_T} lineScale={1.5}>
+      <MapScene cam={l.cam} mercator time={COVER_T} lineScale={1.5}>
         <AbsoluteFill style={{background: 'rgba(255,186,110,0.16)', mixBlendMode: 'soft-light'}} />
         <AbsoluteFill
           style={{background: 'linear-gradient(90deg, rgba(4,6,9,0) 50%, rgba(4,6,9,0.7) 66%, rgba(4,6,9,0.9) 100%)'}}
@@ -44,8 +59,8 @@ export const Cover: React.FC = () => {
         <Pins />
       </MapScene>
       <Vignette strength={0.5} />
-      <div style={{position: 'absolute', left: 1222, top: 150, width: 1, height: 760, background: 'linear-gradient(180deg, transparent, rgba(230,196,126,0.55) 18%, rgba(230,196,126,0.55) 82%, transparent)'}} />
-      <div style={{position: 'absolute', left: 1268, top: 132, width: 600}}>
+      <div style={{position: 'absolute', left: l.rule, top: l.ruleTop, width: 1, height: l.ruleH, background: 'linear-gradient(180deg, transparent, rgba(230,196,126,0.55) 18%, rgba(230,196,126,0.55) 82%, transparent)'}} />
+      <div style={{position: 'absolute', left: l.left, top: l.top, width: 600}}>
         <div style={{fontFamily: FONT.latin, fontWeight: 600, fontSize: 21, letterSpacing: '0.36em', color: COLOR.gold, whiteSpace: 'nowrap'}}>
           {COVER.kicker}
         </div>
@@ -94,6 +109,9 @@ export const Cover: React.FC = () => {
     </AbsoluteFill>
   );
 };
+
+export const Cover: React.FC = () => <MainCover l={COVER_16x9} />;
+export const CoverBili: React.FC = () => <MainCover l={COVER_BILI} />;
 
 const PORTRAIT_PINS = ['p_changan', 'p_huoyan', 'p_suye', 'p_indus', 'p_lingjiu', 'p_mohe'];
 const cover34Cam = (): Cam => ({center: [87.6, 29.2], zoom: 3.62, pitch: 18, bearing: 0, padR: 0, padT: 560, padB: 60});
